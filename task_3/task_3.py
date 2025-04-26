@@ -1,12 +1,12 @@
 from stack import Stack
-
-
-
-def move_items(n):
-    source_stack = Stack(*list(range(n))[::-1])
-    stacks = [Stack() for _ in range(n - 2)]
+import random
+#worst code ever
+def move_items(source_value):
+    source_value.sort(reverse=True)
+    source_stack = Stack(*source_value)
+    stacks = [Stack() for _ in range(len(source_value))]
     final_stack = Stack()
-    tries = n * 3
+    tries = 10000
 
     def log():
         print("source_stack:", source_stack)
@@ -88,14 +88,22 @@ if __name__ == "__main__":
 
         try:
             n = int(user_input)
+
         except ValueError:
             print("Please enter an integer value.")
             continue
-        if n < 0:
+        if n < 3:
             print("Value too small")
             continue
 
-        move_items(n)
+        min_value = 1
+        max_value = 3
+        last = 0
+        random_list = []
+        for _ in range(n):
+            last += random.randint(min_value, max_value)
+            random_list.append(last)
+        move_items(random_list)
 
     print("Exiting...")
 
