@@ -6,7 +6,7 @@ class Stack:
 
     def push(self, value):
         if not self.empty() and value > self.peek():
-            raise Exception("Stack error")  
+            raise Exception(f"Stack error {value} {self.peek()}")  
         self._container.append(value)
 
     def pop(self):
